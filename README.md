@@ -1,4 +1,3 @@
-# AEEAssign1
 # The Hong Kong Polytechnic University  
 **Department of Aeronautical and Aviation Engineering**  
 **2024/25 Semester 2**  
@@ -44,7 +43,7 @@ GPSSDR is very easy to use. This section presents the usage through two examples
 
 To begin with, it is necessary to understand the folder structure of the software, as shown in Figure 2. This software consists of three separate files: the main program, the initialization functions (`initParameters_OpenSky.m` and `initParameters_Urban.m`), and three folders containing baseband signal processing functions, geo-related functions, and plot functions. The baseband signal processing functions handle signal acquisition, tracking, navigation data extraction, etc., while the geo-related functions perform coordinate transformation, atmospheric corrections, and so on. The plot-related functions are responsible for plotting. Each file contains comments that clearly specify the purpose of the respective function.
 
-![Folder structure](media/image2.png)  
+![Figure 2 Folder structure](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image2.png)  
 **Figure 2. Folder structure**
 
 ### Initialization Parameters
@@ -94,15 +93,15 @@ Process the IF data using a GNSS SDR and generate initial acquisition outputs.
 
 After initialization, type `SDR_main` in the MATLAB command window and press [Return]. This software will first acquire the visible satellites, outputting the satellite number (SV), signal-to-noise ratio (SNR), code phase, and Doppler frequency in the command window, as shown in Figure 3. The acquisition result is saved in the current folder with the name `Acquired + raw data file name + .mat`.
 
-![Acquisition results shown in MATLAB command window](media/image3.png)  
+![Figure3.Acquisition results shown in MATLAB command window](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image3.png)  
 **Figure 3. Acquisition results shown in MATLAB command window**
 
 To further visualize the acquisition results, use a bar chart to plot the satellite signal acquisition results. The x-axis represents each PNR number in `Acquired.sv`, and the y-axis corresponds to the SNR value for each satellite. A peak higher than the acquisition threshold indicates a successful acquisition of that satellite. If satellites are not detected, use an 'x' marker. When the acquisition threshold is set to 16, the model acquisition results for OpenSky and Urban data are as follows (Figure 4 and 5):
 
-![Acquisition results of Urban data](media/image4.png)  
+![Figure4.Acquisition results of Urban data](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image4.png)  
 **Figure 4. Acquisition results of Urban data**
 
-![Acquisition results of OpenSky data](media/image5.png)  
+![Figure5.Acquisition results of OpenSky data](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image5.png)  
 **Figure 5. Acquisition results of OpenSky data**
 
 From Figures 4 and 5, when the threshold value was set to 16, the Urban data acquired signals from 6 satellites, and the OpenSky data acquired signals from 8 satellites.
@@ -115,17 +114,17 @@ Adapt the tracking loop (DLL) to produce correlation plots and analyze the track
 
 After acquisition, perform signal tracking and obtain satellite ephemeris. In conventional tracking, a DLL with fixed bandwidths is used to track the code. The DLL employs a normalized noncoherent early-minus-late envelope discriminator. A progress bar will appear during the conventional tracking period. The conventional tracking result is saved in the current folder with the name `TckRstct_Eph + raw data file name + .mat`.
 
-![Progress bar during conventional tracking period](media/image6.png)  
+![Figure6.Progress bar during conventional tracking period](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image6.png)  
 **Figure 6. Progress bar during conventional tracking period**
 
 To analyze the tracking performance, correlation values against the time delay for each PNR were plotted. The x-axis represents the time delay, with the unit in chips, and the y-axis represents the correlation values. When x = 0, it refers to the prompt time; -0.5 represents 0.5 chips earlier relative to the present, and 0.5 represents 0.5 chips later relative to the present. Different colors are used to represent the correlation values for different satellites.
 
 For the Urban and OpenSky data, 6 and 8 satellites were acquired, respectively. Both datasets have a length of 90 seconds. This means that if 1 ms is recorded for each time step, the Urban and OpenSky data will acquire 540,000 and 640,000 results, respectively. To avoid clutter in the correlation lines, the correlation value line is plotted once for every 1,000 time steps. The OpenSky (Figure 7) and Urban (Figure 8) results are shown as follows:
 
-![Correlation plots for OpenSky data](media/image7.png)  
+![Figure7.Correlation plots for OpenSky data](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image7.png)  
 **Figure 7. Correlation plots for OpenSky data**
 
-![Correlation plots for Urban data](media/image8.png)  
+![Figure8.Correlation plots for Urban data](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image8.png)  
 **Figure 8. Correlation plots for Urban data**
 
 **Analysis:** Compared to OpenSky data, urban environments introduce multipath effects, where signals reflect off buildings and other structures, causing multiple delayed versions of the signal to arrive at the receiver. This can lead to broader and less distinct correlation peaks, as seen in the urban correlation plot. Additionally, buildings and other obstacles can attenuate the signal, reducing the overall correlation values. This is evident in the urban plot, where the correlation values are generally lower compared to the OpenSky plot.
@@ -167,23 +166,23 @@ Using the pseudorange measurements obtained from tracking, implement the Weighte
 
 Obtain pseudorange measurements from multiple satellites. Start with an initial guess of the user's position and clock bias. Use the `solu.mode` parameter to set the method for computing the user's position and velocity. If `solu.mode` is set to 0, it indicates the use of the Weighted Least Squares (WLS) algorithm to compute the user's position and velocity. The position and velocity estimation results are saved in the current folder with the name `navSolCT_WLS_ + num2str(track.pdi) + ms_ + file.fileneme`.
 
-![Storage of position and velocity estimation result variables](media/image9.png)  
+![Figure9.Storage of position and velocity estimation result variables](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image9.png)  
 **Figure 9: Storage of position and velocity estimation result variables**
 
 For OpenSky and Urban data, the ground truth latitude and longitude coordinates are (22.328444770087565, 114.1713630049711) and (22.3198722, 114.209101777778), respectively. The estimated user position's latitude and longitude results are stored in `usrPosLLH`, and the specific results are as follows:
 
-![Longitude, Latitude, and Height Prediction Results for OpenSky data using the WLS](media/image10.png)  
+![Figure10.Longitude, Latitude, and Height Prediction Results for OpenSky data using the WLS](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image10.png)  
 **Figure 10: Longitude, Latitude, and Height Prediction Results for OpenSky data using the WLS**
 
-![Longitude, Latitude, and Height Prediction Results for Urban data using the WLS](media/image11.png)  
+![Figure11.Longitude, Latitude, and Height Prediction Results for Urban data using the WLS](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image11.png)  
 **Figure 11: Longitude, Latitude, and Height Prediction Results for Urban data using the WLS**
 
 In addition, the error between the estimated position and ground truth values was saved in the `usrPosENU` field with the ENU coordinate system. Furthermore, the estimation errors of the coordinates were visualized using a scatter plot, where the x-axis represents the user's position offset eastward from the reference point (m), and the y-axis represents the offset northward from the reference point. Different points represent different local estimated reception times (s), with the color of the points becoming bluer as time progresses.
 
-![OpenSky position estimation error by WLS algorithm over time](media/image12.png)  
+![Figure12.OpenSky position estimation error by WLS algorithm over time](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image12.png)  
 **Figure 12. OpenSky position estimation error by WLS algorithm over time**
 
-![Urban position estimation error by WLS algorithm over time](media/image13.png)  
+![Figure13.Urban position estimation error by WLS algorithm over time](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image13.png)  
 **Figure 13. Urban position estimation error by WLS algorithm over time**
 
 **Analysis:** Using the WLS algorithm to estimate the user's position, for the OpenSky environment, the error points are distributed along a clearly linear path, and as time progresses (with the color shifting from purple to blue), the error gradually increases. This could be due to some systematic errors (such as receiver clock drift or satellite orbit errors) that have not been fully corrected.
@@ -192,12 +191,65 @@ In the Urban environment, the error points are more dispersed, and as time progr
 
 At the same time, the velocity components of the user device in the local East-North-Up (ENU) coordinate system were visualized. In this visualization (Figure 14 and 15), the x-axis represents the user's velocity moving eastward, the y-axis represents the user's velocity moving northward, and points in different colors represent the estimated local reception times.
 
-![OpenSky data velocity estimation error by WLS algorithm over time](media/image14.png)  
+![Figure14.OpenSky data velocity estimation error by WLS algorithm over time](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image14.png)  
 **Figure 14. OpenSky data velocity estimation error by WLS algorithm over time**
 
-![Urban data velocity estimation error by WLS algorithm over time](media/image15.png)  
+![Figure15.Urban data velocity estimation error by WLS algorithm over time](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image15.png)  
 **Figure 15. Urban data velocity estimation error by WLS algorithm over time**
 
 **Analysis:** In the OpenSky environment, the velocity estimation points estimated using the WLS algorithm show a relatively uniform distribution along the eastward (X-axis) and northward (Y-axis) directions, and the distribution is concentrated. This may be because the signal propagation path in the OpenSky environment is relatively direct, with high signal quality, leading to smaller velocity estimation errors and a more compact distribution of points. It also suggests that over time, the velocity estimation remains relatively stable with little variation.
 
-However, in the Urban environment, the velocity estimation points show a more dispersed distribution along the eastward and northward directions, with a noticeable bias trend. Due to the presence of multipath effects and signal occlusion in the Urban environment, the signal quality is poorer, which leads to larger velocity estimation errors and a
+However, in the Urban environment, the velocity estimation points show a more dispersed distribution along the eastward and northward directions, with a noticeable bias trend. Due to the presence of multipath effects and signal occlusion in the Urban environment, the signal quality is poorer, which leads to larger velocity estimation errors and a more dispersed distribution of points. Moreover, as time progresses, the velocity estimation fluctuates more significantly, likely due to environmental changes causing variations in signal quality.
+
+---
+
+## Task 5 -- Kalman Filter-Based Positioning
+
+Develop an Extended Kalman Filter (EKF) using pseudorange and Doppler measurements to estimate user position and velocity.
+
+If `solu.mode` is set to 1, it represents using the Extended Kalman Filter (EKF) algorithm to compute the user's position and velocity. The position and velocity estimation results are saved in the current folder with the filename `navSolCT_EKF_+ num2str(track.pdi) + ms_ + file.fileneme`.
+
+![Figure16.Storage of position and velocity estimation result variables](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image16.png)  
+**Figure 16: Storage of position and velocity estimation result variables**
+
+For the OpenSky and Urban data, the ground truth latitude and longitude coordinates are (22.328444770087565, 114.1713630049711) and (22.3198722, 114.209101777778), respectively. Using the EKF algorithm, the estimated user position in latitude and longitude is stored in `usrPosLLH`. The specific results are as follows:
+
+![Figure17.Longitude, Latitude, and Height Prediction Results for OpenSky data using the EKF](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image17.png)  
+**Figure 17: Longitude, Latitude, and Height Prediction Results for OpenSky data using the EKF**
+
+![Figure18.Longitude, Latitude, and Height Prediction Results for Urban data using the EKF](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image18.png)  
+**Figure 18: Longitude, Latitude, and Height Prediction Results for Urban data using the EKF**
+
+In addition, the error between the estimated position and ground truth values is saved in the `usrPosENU` field using the ENU coordinate system. Furthermore, the estimation error of the coordinates is visualized using a scatter plot, where the x-axis represents the user's displacement eastward from the reference point (in meters), the y-axis represents the displacement northward from the reference point, and different points represent different local estimated reception times (in seconds). The further in time, the bluer the color of the points.
+
+![Figure19.OpenSky data position estimation error by EKF algorithm over time](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image19.png)  
+**Figure 19. OpenSky data position estimation error by EKF algorithm over time**
+
+![Figure20.Urban data position estimation error by EKF algorithm over time](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image20.png)  
+**Figure 20. Urban data position estimation error by EKF algorithm over time**
+
+**Analysis:** In the OpenSky environment, the error points are more concentrated, and the error magnitude is relatively small, indicating good positioning accuracy. Furthermore, as time progresses, the error remains relatively stable, demonstrating good system stability and excellent positioning performance. In contrast, in the Urban environment, the error points show greater dispersion, and as time passes, the error not only increases but also exhibits a certain bias trend. This may be due to signal quality fluctuations caused by environmental changes.
+
+Additionally, compared to the WLS algorithm, the use of the EKF algorithm significantly reduces the user position estimation error in both the Urban and OpenSky environments. This could be because the EKF can update the state estimate in real-time, adapting to dynamic environmental changes. Moreover, the EKF is better at handling complex dynamic models and nonlinear relationships, improving positioning accuracy.
+
+At the same time, the velocity components of the estimated user device in the local East-North-Up (ENU) coordinate system were visualized. The x-axis represents the user's velocity moving eastward, the y-axis represents the user's velocity moving northward, and the points of different colors represent the estimated local reception times.
+
+![Figure21.OpenSky data velocity estimation error by EKF algorithm over time](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image21.png)  
+**Figure 21. OpenSky data velocity estimation error by EKF algorithm over time**
+
+![Figure22.Urban data velocity estimation error by EKF algorithm over time](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image22.png)  
+**Figure 22. Urban data velocity estimation error by EKF algorithm over time**
+
+Using the EKF algorithm to estimate the user's velocity, in the OpenSky environment, where the signal quality is higher, the velocity estimation is quite accurate. As time progresses, the velocity decreases linearly, gradually approaching zero. In the Urban environment, the initial velocity estimation error is relatively large, but over time, the velocity decreases linearly and approaches zero. This indicates that the EKF algorithm can accurately estimate the velocity in both OpenSky and Urban environments. Especially in open spaces with minimal signal obstruction and multipath effects, such as in the OpenSky environment, the velocity estimation results are superior to those of the WLS algorithm.
+
+---
+
+## References
+
+Xu, Bing, and Li-Ta Hsu. "Open-source MATLAB code for GPS vector tracking on a software-defined receiver." GPS solutions 23.2 (2019): 46.
+
+---
+
+## Declaration
+
+The code for this assignment is modified based on the original code (from References, written by Prof. Xu, Bing, and Li-Ta Hsu.).
