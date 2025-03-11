@@ -1,4 +1,5 @@
-# The Hong Kong Polytechnic University  
+# AAE6102 Assignment 1
+**The Hong Kong Polytechnic University  
 **Department of Aeronautical and Aviation Engineering**  
 **2024/25 Semester 2**  
 **AAE6102 Satellite Communication and Navigation**  
