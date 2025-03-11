@@ -28,7 +28,7 @@ Make sure you have a working MATLAB environment. To install GPSSDR, simply unzip
 
 GPSSDR is very easy to use. This section presents the usage through two examples. The raw IF data were collected in open-sky and urban environments (see Figure 1). The sampling frequency is 58 MHz and 26 MHz, respectively. The urban dataset likely exhibits typical urban effects such as multipath and non-line-of-sight (NLOS) receptions, which can degrade signal quality and lead to positioning errors. The collected GPS L1 data are described in Table 1.
 
-!(https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image1.png)  
+![Figure 1. Data collection locations](https://github.com/LuoWenting99/AEEAssign1/blob/main/GNSSSDR_LWT/screenshot/image1.png)  
 **Figure 1. Data collection locations**
 
 ### Table 1: Sample Data Description
